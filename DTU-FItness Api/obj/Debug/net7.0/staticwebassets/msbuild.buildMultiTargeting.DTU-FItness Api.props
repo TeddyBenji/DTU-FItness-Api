@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DTU-FItness Api.props" />
+</Project>
