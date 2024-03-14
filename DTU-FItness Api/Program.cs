@@ -5,7 +5,6 @@ using Pomelo.EntityFrameworkCore.MySql;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<SimpleService>();
 builder.Services.AddScoped<ClubService>();
 
 // Add DbContext configuration here if not already added

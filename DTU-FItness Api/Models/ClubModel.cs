@@ -1,18 +1,16 @@
-using Microsoft.AspNetCore.SignalR;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class ClubModel
 {
-    public Guid ClubID {get; set;}
-    public string ClubName {get; set;}
-
-    public ClubModel(string clubName)
-    {
-        ClubName = clubName ?? throw new ArgumentNullException(nameof(clubName), "ClubName is required.");
-    }
-
-    public string? Description {get; set;}
-
-    public string? OwnerUserId {get; set;}
+    public Guid ClubID { get; set; }
+    public string ClubName { get; set; }
+    public string? Description { get; set; }
     
+    
+    [NotMapped]
+    public string OwnerUsername { get; set; }
+   
+    public Guid? OwnerUserId { get; set; } 
     public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 }
