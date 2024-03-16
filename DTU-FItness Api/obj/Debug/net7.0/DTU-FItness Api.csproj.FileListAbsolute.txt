@@ -60,3 +60,10 @@ C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\MySqlConnector.dll
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

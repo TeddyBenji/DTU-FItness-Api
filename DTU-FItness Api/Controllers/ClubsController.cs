@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 
@@ -14,6 +16,7 @@ public class ClubsController : ControllerBase
     }
 
 [HttpPost("create")]
+[Authorize(Policy = "RequireAdminRole")]
 public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
 {
     if (club == null) 
