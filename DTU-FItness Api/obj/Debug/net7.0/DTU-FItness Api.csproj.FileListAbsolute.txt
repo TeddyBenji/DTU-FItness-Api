@@ -67,3 +67,4 @@ C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Benjamin\source\repos\DTU-FItness Api\DTU-FItness Api\bin\Debug\net7.0\DTU-FItness Api.staticwebassets.runtime.json

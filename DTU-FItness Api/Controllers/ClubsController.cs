@@ -45,4 +45,25 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
 }
 
 
+[HttpPost("RegisterMember")]
+[Authorize(Policy = "RequireAdminRole")]
+    public async Task<IActionResult> RegisterMember([FromBody] RegisterMemberDto registerMemberDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var (Success, Message) = await _clubService.RegisterMemberAsync(registerMemberDto.Username, registerMemberDto.ClubName);
+
+        if (!Success)
+        {
+            return BadRequest(Message);
+        }
+
+        return Ok(Message);
+    }
+
+
+
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using DtuFitnessApi.Models;
 
 
 public class ApplicationDbContext : DbContext
@@ -10,6 +11,7 @@ public class ApplicationDbContext : DbContext
      
     public DbSet<ClubModel> Clubs { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<ClubMember> ClubMembers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -51,6 +53,26 @@ public class ApplicationDbContext : DbContext
 
     // Configure other properties as needed
 });
+
+    modelBuilder.Entity<ClubMember>(entity =>
+        {
+            entity.HasKey(e => e.ClubMemberId); // Primary key for the ClubMember entity
+
+            // Assuming ClubId and MemberId are the foreign keys in the ClubMember entity
+            entity.HasOne(cm => cm.Club) // Navigation property in ClubMember
+                .WithMany(c => c.ClubMembers) // If you have a corresponding collection property in ClubModel
+                .HasForeignKey(cm => cm.ClubId); // Foreign key
+
+            entity.HasOne(cm => cm.UserProfile) // Navigation property in ClubMember
+                .WithMany(up => up.ClubMembers) // If you have a corresponding collection property in UserProfile
+                .HasForeignKey(cm => cm.MemberId); // Foreign key
+
+            // Map to the actual table name in the database if it's different
+            entity.ToTable("clubmembers");
+
+            // Additional configurations...
+        });
+
 
     }
 }
