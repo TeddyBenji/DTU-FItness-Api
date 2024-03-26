@@ -21,5 +21,8 @@ public class UserProfile
     public virtual ICollection<ClubMember> ClubMembers { get; set; }
 
     public virtual ICollection<ExerciseLog> ExerciseLogs { get; set; } = new HashSet<ExerciseLog>();
+
+    public ICollection<UserNotification> UserNotifications { get; set; }
+
 }
 

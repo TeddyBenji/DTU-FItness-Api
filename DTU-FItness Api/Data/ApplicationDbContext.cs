@@ -16,6 +16,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<ExerciseModel> Exercises { get; set; }
     public DbSet<Metric> Metrics { get; set; }
     public DbSet<ExerciseMetric> ExerciseMetrics { get; set; }
+    public DbSet<Event> Events { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<UserNotification> UserNotifications { get; set; }
 
 
 
@@ -118,6 +121,62 @@ public class ApplicationDbContext : DbContext
           .WithMany(p => p.ExerciseMetrics)
           .HasForeignKey(d => d.MetricID);
 });
+
+modelBuilder.Entity<Notification>(entity =>
+{
+    entity.ToTable("notifications");
+    entity.HasKey(n => n.NotificationID);
+
+    entity.Property(n => n.Message).HasColumnType("TEXT");
+
+    // Relationship back to Event
+    entity.HasOne(n => n.Event)
+          .WithMany(e => e.Notifications)
+          .HasForeignKey(n => n.EventID);
+
+    // If using UserNotifications to track per-user notification state
+    entity.HasMany(n => n.UserNotifications)
+          .WithOne(un => un.Notification)
+          .HasForeignKey(un => un.NotificationID);
+});
+
+modelBuilder.Entity<Event>(entity =>
+{
+    entity.ToTable("events");
+    entity.HasKey(e => e.EventID);
+
+    entity.Property(e => e.ClubID).IsRequired();
+    entity.Property(e => e.Title).IsRequired().HasMaxLength(255);
+    entity.Property(e => e.Description).HasColumnType("TEXT");
+    entity.Property(e => e.EventDate).IsRequired();
+
+    // Relationship to ClubModel
+    entity.HasOne(e => e.Club)
+          .WithMany(c => c.Events)
+          .HasForeignKey(e => e.ClubID);
+
+    // Assuming you have a collection of notifications in your Event model
+    entity.HasMany(e => e.Notifications)
+          .WithOne(n => n.Event)
+          .HasForeignKey(n => n.EventID);
+});
+
+modelBuilder.Entity<UserNotification>(entity =>
+{
+    entity.ToTable("user_notifications"); // Correct table name
+    entity.HasKey(un => un.UserNotificationID);
+    
+    entity.Property(un => un.IsRead).IsRequired();
+
+    entity.HasOne(un => un.Notification)
+          .WithMany(n => n.UserNotifications) // Ensure there's a collection of UserNotifications in Notification
+          .HasForeignKey(un => un.NotificationID);
+
+    entity.HasOne(un => un.User)
+          .WithMany(up => up.UserNotifications) // Ensure there's a collection of UserNotifications in UserProfile
+          .HasForeignKey(un => un.IdentityUserID); // Make sure this foreign key is correctly named and typed
+});
+
 
 
     }

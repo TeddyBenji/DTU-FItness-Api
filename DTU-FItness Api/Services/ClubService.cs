@@ -8,10 +8,12 @@ namespace DtuFitnessApi.Services;
 public class ClubService
 {
     private readonly ApplicationDbContext _context;
+    private readonly NotificationService _notificationService;
 
-    public ClubService(ApplicationDbContext context)
+    public ClubService(ApplicationDbContext context, NotificationService notificationService)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _notificationService = notificationService;
     }
 
     public async Task<string> FindUserIdByUsernameAsync(string username)
@@ -88,6 +90,30 @@ if (isMember)
     await _context.SaveChangesAsync();
 
     return (true, "User registered to club successfully.");
+}
+
+    public async Task<Event> CreateEventAsync(EventCreationDto eventDto)
+{
+    var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == eventDto.ClubName);
+    if (club == null)
+    {
+        throw new ArgumentException("Club not found.");
+    }
+
+    var newEvent = new Event
+    {
+        ClubID = club.ClubID, // ClubID found based on ClubName
+        Title = eventDto.Title,
+        Description = eventDto.Description,
+        EventDate = eventDto.EventDate
+    };
+
+    _context.Events.Add(newEvent);
+    await _context.SaveChangesAsync();
+
+    await _notificationService.CreateNotificationsForEvent(newEvent);
+
+    return newEvent;
 }
 
 }

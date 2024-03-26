@@ -12,9 +12,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
         options.JsonSerializerOptions.WriteIndented = true; // Optional: makes the output JSON easier to read
     });
-    
+
 builder.Services.AddScoped<ClubService>();
 builder.Services.AddScoped<ExerciseService>();
+builder.Services.AddScoped<NotificationService>();
 
 // Add DbContext configuration here if not already added
 // For example, if using Entity Framework Core:

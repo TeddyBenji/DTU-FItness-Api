@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using DtuFitnessApi.Services;
+using DtuFitnessApi.Models;
+
 
 
 
@@ -9,10 +11,12 @@ using DtuFitnessApi.Services;
 public class ClubsController : ControllerBase
 {
     private readonly ClubService _clubService;
+    private readonly NotificationService _notificationService;
 
-    public ClubsController(ClubService clubService)
+    public ClubsController(ClubService clubService, NotificationService notificationService)
     {
         _clubService = clubService ?? throw new ArgumentNullException(nameof(clubService));
+        _notificationService = notificationService;
     }
 
 [HttpPost("create")]
@@ -63,5 +67,27 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
 
         return Ok(Message);
     }
+
+[HttpPost("CreateEvent")]
+public async Task<IActionResult> CreateEvent([FromBody] EventCreationDto eventDto)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+
+    try
+    {
+        // Pass the DTO directly to the service method
+        var createdEvent = await _clubService.CreateEventAsync(eventDto);
+
+        return CreatedAtAction(nameof(CreateEvent), new { id = createdEvent.EventID }, createdEvent);
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Internal server error: {ex.Message}");
+    }
+}
+
 
 }
