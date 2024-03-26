@@ -19,5 +19,7 @@ public class UserProfile
     // Include other properties like Bio and FitnessGoals if needed
 
     public virtual ICollection<ClubMember> ClubMembers { get; set; }
+
+    public virtual ICollection<ExerciseLog> ExerciseLogs { get; set; } = new HashSet<ExerciseLog>();
 }
 

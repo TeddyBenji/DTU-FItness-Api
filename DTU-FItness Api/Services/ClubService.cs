@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DtuFitnessApi.Models;
 
+namespace DtuFitnessApi.Services;
 public class ClubService
 {
     private readonly ApplicationDbContext _context;

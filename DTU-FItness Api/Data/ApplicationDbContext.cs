@@ -12,6 +12,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<ClubModel> Clubs { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<ClubMember> ClubMembers { get; set; }
+    public DbSet<ExerciseLog> ExerciseLogs { get; set; }
+    public DbSet<ExerciseModel> Exercises { get; set; }
+    public DbSet<Metric> Metrics { get; set; }
+    public DbSet<ExerciseMetric> ExerciseMetrics { get; set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,6 +78,46 @@ public class ApplicationDbContext : DbContext
 
             // Additional configurations...
         });
+
+        modelBuilder.Entity<ExerciseLog>(entity =>
+    {
+        entity.ToTable("exercise_logs");
+        entity.HasKey(e => e.LogID);
+        entity.Property(e => e.ExerciseDate).IsRequired();
+        entity.HasOne(d => d.UserProfile).WithMany(p => p.ExerciseLogs).HasForeignKey(d => d.UserID);
+        entity.HasOne(d => d.ExerciseModel) // instead of d.Exercise
+          .WithMany(p => p.ExerciseLogs)
+          .HasForeignKey(d => d.ExerciseID);
+    });
+
+    modelBuilder.Entity<ExerciseModel>(entity =>
+    {
+        entity.ToTable("exercises");
+        entity.HasKey(e => e.ExerciseID);
+        entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
+    });
+
+    modelBuilder.Entity<Metric>(entity =>
+    {
+        entity.ToTable("metrics");
+        entity.HasKey(e => e.MetricID);
+        entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
+    });
+
+    modelBuilder.Entity<ExerciseMetric>(entity =>
+{
+    entity.ToTable("exercise_metrics"); // Update to use the correct table name
+    entity.HasKey(e => e.ExerciseMetricID);
+    entity.Property(e => e.Value).IsRequired();
+    
+    entity.HasOne(d => d.ExerciseLog)
+          .WithMany(p => p.ExerciseMetrics) // Ensure ExerciseLog has a collection of ExerciseMetric
+          .HasForeignKey(d => d.ExerciseLogID);
+
+    entity.HasOne(d => d.Metric)
+          .WithMany(p => p.ExerciseMetrics)
+          .HasForeignKey(d => d.MetricID);
+});
 
 
     }

@@ -2,12 +2,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.IdentityModel.Tokens;
+using DtuFitnessApi.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.WriteIndented = true; // Optional: makes the output JSON easier to read
+    });
+    
 builder.Services.AddScoped<ClubService>();
+builder.Services.AddScoped<ExerciseService>();
 
 // Add DbContext configuration here if not already added
 // For example, if using Entity Framework Core:
