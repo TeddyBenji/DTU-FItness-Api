@@ -37,11 +37,11 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
         // This captures cases like missing username or club name, or if the user is not found.
         return BadRequest(ex.Message);
     }
-    catch (Exception ex)
-    {
-        // General error handling for unexpected exceptions.
-        return StatusCode(500, "An error occurred while creating the club. Please try again later.");
-    }
+    catch (Exception)
+{
+    // General error handling for unexpected exceptions.
+    return StatusCode(500, "An error occurred while creating the club. Please try again later.");
+}
 }
 
 
@@ -63,7 +63,5 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
 
         return Ok(Message);
     }
-
-
 
 }
