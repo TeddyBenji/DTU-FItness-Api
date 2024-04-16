@@ -42,5 +42,31 @@ public class ExerciseController : ControllerBase
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
+
+    [HttpPost("CreateExercise")]
+public async Task<IActionResult> CreateExercise([FromBody] ExerciseCreateDto exerciseDto)
+{
+    try
+    {
+        if (string.IsNullOrEmpty(exerciseDto.Name))
+            return BadRequest("Exercise name is required.");
+
+        var createdExercise = await _exerciseService.CreateExerciseAsync(exerciseDto);
+        return CreatedAtAction(nameof(CreateExercise), new { id = createdExercise.ExerciseID }, createdExercise);
+    }
+    catch (InvalidOperationException ex)
+    {
+        return BadRequest(ex.Message); // Handle specific known errors gracefully
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Internal server error: {ex.Message}"); // General error handling
+    }
+}
+
+
+
+
+
 }
 

@@ -106,6 +106,42 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
     return Ok("Club deleted successfully.");
     }
 
-    
+
+    [HttpPut("UpdateClubDescription/{clubName}")]
+public async Task<IActionResult> UpdateClubDescription(string clubName, [FromBody] ClubDescriptionUpdateDto updateDto)
+{
+    if (string.IsNullOrWhiteSpace(updateDto.Description))
+    {
+        return BadRequest("The description cannot be empty.");
+    }
+
+    bool updated = await _clubService.UpdateClubDescriptionAsync(clubName, updateDto.Description);
+    if (!updated)
+    {
+        return NotFound($"No club found with the name {clubName}.");
+    }
+
+    return Ok("Club description updated successfully.");
+}
+
+[HttpPut("ChangeClubOwner/{clubName}")]
+public async Task<IActionResult> ChangeClubOwner(string clubName, [FromBody] ClubOwnerUpdateDto updateDto)
+{
+    if (string.IsNullOrEmpty(updateDto.NewOwnerUsername))
+    {
+        return BadRequest("New owner username must be provided.");
+    }
+
+    bool updated = await _clubService.UpdateClubOwnerByUsernameAsync(clubName, updateDto.NewOwnerUsername);
+    if (!updated)
+    {
+        return NotFound($"Club named {clubName} not found or new owner username '{updateDto.NewOwnerUsername}' is invalid.");
+    }
+
+    return Ok("Club owner updated successfully.");
+}
+
+
+
 
 }

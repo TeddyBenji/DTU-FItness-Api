@@ -132,5 +132,43 @@ if (isMember)
 }
 
 
+public async Task<bool> UpdateClubDescriptionAsync(string clubName, string newDescription)
+{
+    var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == clubName);
+    if (club == null)
+    {
+        return false;  // Club not found
+    }
+
+    club.Description = newDescription;
+    await _context.SaveChangesAsync();
+    return true;  // Successfully updated
+}
+
+public async Task<bool> UpdateClubOwnerByUsernameAsync(string clubName, string newOwnerUsername)
+{
+    // First find the user by username to get the IdentityUserID
+    var newUser = await _context.UserProfiles
+                                .FirstOrDefaultAsync(u => u.Username == newOwnerUsername);
+    if (newUser == null)
+    {
+        return false; // New owner user not found
+    }
+
+    // Then find the club and update its owner
+    var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == clubName);
+    if (club == null)
+    {
+        return false; // Club not found
+    }
+
+    club.OwnerUserId = newUser.IdentityUserID;
+    await _context.SaveChangesAsync();
+    return true; // Successfully updated
+}
+
+
+
+
 }
 

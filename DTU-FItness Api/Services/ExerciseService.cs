@@ -59,4 +59,28 @@ public class ExerciseService
     await _context.SaveChangesAsync();
 
     return newLog;
-}}
+}
+
+
+public async Task<ExerciseModel> CreateExerciseAsync(ExerciseCreateDto exerciseDto)
+{
+    if (string.IsNullOrWhiteSpace(exerciseDto.Name))
+        throw new ArgumentException("Exercise name cannot be empty.");
+
+    // Check if the exercise already exists
+    var existingExercise = await _context.Exercises
+                                         .FirstOrDefaultAsync(e => e.Name == exerciseDto.Name);
+    if (existingExercise != null)
+        throw new InvalidOperationException("An exercise with this name already exists.");
+
+    var newExercise = new ExerciseModel { Name = exerciseDto.Name };
+    _context.Exercises.Add(newExercise);
+    await _context.SaveChangesAsync();
+
+    return newExercise;
+}
+
+
+
+
+}
