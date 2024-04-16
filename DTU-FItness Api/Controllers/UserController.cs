@@ -61,7 +61,7 @@ namespace DtuFitnessApi.Controllers
         }
         }
 
-        [HttpGet("GetBio")]
+    [HttpGet("GetBio")]
     public async Task<IActionResult> GetBio()
     {
     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -78,6 +78,40 @@ namespace DtuFitnessApi.Controllers
 
     return Ok(bio);
     }
+
+
+    [HttpGet("GetAllUsers")]
+    public async Task<IActionResult> GetAllUsers()
+    {
+    var users = await _userService.GetAllUsersAsync();
+    if (users == null || !users.Any())
+    {
+        return NotFound("No users found.");
+    }
+
+    return Ok(users);
+    }
+
+
+   [HttpGet("GetUser/{username}")]
+public async Task<IActionResult> GetUserByUsername(string username)
+{
+    if (string.IsNullOrEmpty(username))
+    {
+        return BadRequest("Username is required.");
+    }
+
+    var user = await _userService.GetUserByUsernameAsync(username);
+    if (user == null)
+    {
+        return NotFound("User not found.");
+    }
+
+    return Ok(user);
+}
+ 
+
+
 
 
         

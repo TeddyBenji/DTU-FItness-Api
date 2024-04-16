@@ -38,8 +38,25 @@ public class UserService
     }
 
 
+    public async Task<List<UserProfile>> GetAllUsersAsync()
+{
+    return await _context.UserProfiles
+        .Select(u => new UserProfile {
+            ProfileID = u.ProfileID,
+            IdentityUserID = u.IdentityUserID,
+            Username = u.Username,
+            Bio = u.Bio
+        })
+        .ToListAsync();
+}
 
 
+public async Task<UserProfile> GetUserByUsernameAsync(string username)
+{
+    return await _context.UserProfiles
+        .Where(u => u.Username == username)
+        .FirstOrDefaultAsync();
+}
 
 
 
