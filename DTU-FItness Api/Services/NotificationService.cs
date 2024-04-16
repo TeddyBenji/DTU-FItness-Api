@@ -14,29 +14,39 @@ public class NotificationService
     }
 
     public async Task CreateNotificationsForEvent(Event clubEvent)
+{
+    var clubMembers = await _context.ClubMembers
+                                     .Where(cm => cm.ClubId == clubEvent.ClubID)
+                                     .ToListAsync();
+
+    var notifications = new List<Notification>();
+    var userNotifications = new List<UserNotification>();
+
+    foreach (var member in clubMembers)
     {
-        var clubMembers = await _context.ClubMembers
-                                         .Where(cm => cm.ClubId == clubEvent.ClubID)
-                                         .ToListAsync();
-
-        var notifications = new List<Notification>();
-
-        foreach (var member in clubMembers)
+        var notification = new Notification
         {
-            var notification = new Notification
-            {
-                EventID = clubEvent.EventID,
-                Message = $"New event: {clubEvent.Title} on {clubEvent.EventDate}"
-            };
+            EventID = clubEvent.EventID,
+            Message = $"New event: {clubEvent.Title} on {clubEvent.EventDate}"
+        };
 
-            notifications.Add(notification);
+        _context.Notifications.Add(notification);
+        await _context.SaveChangesAsync();  // Save each notification to generate an ID
 
-            // Optionally, directly create UserNotification entries here
-        }
+        var userNotification = new UserNotification
+        {
+            NotificationID = notification.NotificationID,
+            IdentityUserID = member.MemberId,
+            IsRead = false
+        };
 
-        _context.Notifications.AddRange(notifications);
-        await _context.SaveChangesAsync();
+        userNotifications.Add(userNotification);
     }
+
+    _context.UserNotifications.AddRange(userNotifications);
+    await _context.SaveChangesAsync();
+}
+
 
     public async Task<List<NotificationDto>> GetUnreadNotificationsForUser(string userId)
 {
