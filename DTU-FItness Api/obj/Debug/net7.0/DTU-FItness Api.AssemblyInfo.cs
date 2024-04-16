@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DTU-FItness Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c12e737dbb93a6a7952f4c23673e71de1ce3ba27")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+248c391ffbf14c3bdf6cc2800904dc6a26a85e07")]
 [assembly: System.Reflection.AssemblyProductAttribute("DTU-FItness Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DTU-FItness Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

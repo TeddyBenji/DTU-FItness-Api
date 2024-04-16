@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DtuFitnessApi.Models;
 using DtuFitnessApi.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -64,6 +65,44 @@ public async Task<IActionResult> CreateExercise([FromBody] ExerciseCreateDto exe
     }
 }
 
+[HttpPost("CreateMetric")]
+public async Task<IActionResult> CreateMetric([FromBody] MetricCreateDto metricDto)
+{
+    try
+    {
+        if (string.IsNullOrEmpty(metricDto.Name))
+            return BadRequest("Metric name is required.");
+
+        var createdMetric = await _exerciseService.CreateMetricAsync(metricDto);
+        return CreatedAtAction(nameof(CreateMetric), new { id = createdMetric.MetricID }, createdMetric);
+    }
+    catch (InvalidOperationException ex)
+    {
+        return BadRequest(ex.Message); // Handle specific known errors gracefully
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Internal server error: {ex.Message}"); // General error handling
+    }
+}
+
+[HttpGet("GetWorkoutLogs")]
+public async Task<IActionResult> GetWorkoutLogs()
+{
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    if (string.IsNullOrEmpty(userId))
+    {
+        return Unauthorized("User ID not found in token.");
+    }
+
+    var logs = await _exerciseService.GetExerciseLogsByUserIdAsync(userId);
+    if (logs == null || logs.Count == 0)
+    {
+        return NotFound("No workout logs found for the user.");
+    }
+
+    return Ok(logs);
+}
 
 
 

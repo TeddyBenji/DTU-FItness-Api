@@ -82,5 +82,47 @@ public async Task<ExerciseModel> CreateExerciseAsync(ExerciseCreateDto exerciseD
 
 
 
+public async Task<Metric> CreateMetricAsync(MetricCreateDto metricDto)
+{
+    if (string.IsNullOrWhiteSpace(metricDto.Name))
+        throw new ArgumentException("Metric name cannot be empty.");
+
+    // Check if the metric already exists
+    var existingMetric = await _context.Metrics
+                                       .FirstOrDefaultAsync(m => m.Name == metricDto.Name);
+    if (existingMetric != null)
+        throw new InvalidOperationException("A metric with this name already exists.");
+
+    var newMetric = new Metric { Name = metricDto.Name };
+    _context.Metrics.Add(newMetric);
+    await _context.SaveChangesAsync();
+
+    return newMetric;
+}
+
+
+public async Task<List<object>> GetExerciseLogsByUserIdAsync(string userId)
+{
+    var logs = await _context.ExerciseLogs
+        .Where(log => log.UserID == userId)
+        .Include(log => log.ExerciseModel)
+        .Include(log => log.ExerciseMetrics)
+        .ThenInclude(metric => metric.Metric)
+        .OrderByDescending(log => log.ExerciseDate)
+        .Select(log => new
+        {
+            Exercise = log.ExerciseModel.Name,
+            Metrics = log.ExerciseMetrics.Select(m => new { MetricName = m.Metric.Name, Value = m.Value }),
+            Date = log.ExerciseDate
+        })
+        .ToListAsync();
+
+    return logs.Cast<object>().ToList();
+}
+
+
+
+
+
 
 }
