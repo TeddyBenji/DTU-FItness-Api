@@ -68,9 +68,9 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
         return Ok(Message);
     }
 
-[HttpPost("CreateEvent")]
-public async Task<IActionResult> CreateEvent([FromBody] EventCreationDto eventDto)
-{
+    [HttpPost("CreateEvent")]
+    public async Task<IActionResult> CreateEvent([FromBody] EventCreationDto eventDto)
+    {
     if (!ModelState.IsValid)
     {
         return BadRequest(ModelState);
@@ -89,5 +89,23 @@ public async Task<IActionResult> CreateEvent([FromBody] EventCreationDto eventDt
     }
 }
 
+    [HttpDelete("DeleteClub/{clubName}")]
+    public async Task<IActionResult> DeleteClub(string clubName)
+    {
+    if (string.IsNullOrEmpty(clubName))
+    {
+        return BadRequest("Club name is required.");
+    }
+
+    bool deleted = await _clubService.DeleteClubByNameAsync(clubName);
+    if (!deleted)
+    {
+        return NotFound("Club not found.");
+    }
+
+    return Ok("Club deleted successfully.");
+    }
+
+    
 
 }

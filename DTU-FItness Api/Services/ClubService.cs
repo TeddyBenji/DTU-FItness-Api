@@ -116,5 +116,21 @@ if (isMember)
     return newEvent;
 }
 
+
+
+
+    public async Task<bool> DeleteClubByNameAsync(string clubName)
+{
+    var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == clubName);
+    if (club != null)
+    {
+        _context.Clubs.Remove(club);
+        await _context.SaveChangesAsync();
+        return true;  // Return true if the club was found and deleted
+    }
+    return false;  // Return false if no club was found to delete
+}
+
+
 }
 
