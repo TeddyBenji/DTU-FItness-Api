@@ -12,10 +12,12 @@ namespace DtuFitnessApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly NotificationService _notificationService;
+        private readonly UserService _userService;
 
-        public UserController(NotificationService notificationService)
+        public UserController(NotificationService notificationService, UserService userService)
         {
             _notificationService = notificationService;
+            _userService = userService;
         }
 
         // Example method to fetch unread notifications for the authenticated user
@@ -34,6 +36,50 @@ namespace DtuFitnessApi.Controllers
             return Ok(notifications);
         }
 
-        // Additional user-related methods can be added here...
+        [HttpPut("UpdateBio")]
+        public async Task<IActionResult> UpdateBio([FromBody] BioUpdateDTO bioUpdate)
+        {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userId))
+        {
+        return Unauthorized("User ID not found in token.");
+        }
+
+        if (bioUpdate == null || string.IsNullOrEmpty(bioUpdate.Bio))
+        {
+        return BadRequest("Bio content is required.");
+        }
+
+        var result = await _userService.UpdateBio(userId, bioUpdate.Bio);
+        if (result)
+        {
+        return Ok("Bio updated successfully.");
+        }
+        else
+        {
+        return NotFound("User not found.");
+        }
+        }
+
+        [HttpGet("GetBio")]
+    public async Task<IActionResult> GetBio()
+    {
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    if (string.IsNullOrEmpty(userId))
+    {
+        return Unauthorized("User ID not found in token.");
+    }
+
+    var bio = await _userService.GetBio(userId);
+    if (bio == null)
+    {
+        return NotFound("User not found or no bio available.");
+    }
+
+    return Ok(bio);
+    }
+
+
+        
     }
 }

@@ -16,6 +16,8 @@ public class UserProfile
     [MaxLength(255)]
     public string Username { get; set; }
 
+    public string? Bio  { get; set; }
+
     // Include other properties like Bio and FitnessGoals if needed
 
     public virtual ICollection<ClubMember> ClubMembers { get; set; }

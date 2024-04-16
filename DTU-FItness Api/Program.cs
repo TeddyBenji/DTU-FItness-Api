@@ -16,6 +16,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddScoped<ClubService>();
 builder.Services.AddScoped<ExerciseService>();
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<UserService>();
 
 // Add DbContext configuration here if not already added
 // For example, if using Entity Framework Core:
