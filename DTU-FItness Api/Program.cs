@@ -8,10 +8,11 @@ using DtuFitnessApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-        options.JsonSerializerOptions.WriteIndented = true; // Optional: makes the output JSON easier to read
-    });
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true; // Optional: for pretty printing
+});
+
 
 builder.Services.AddScoped<ClubService>();
 builder.Services.AddScoped<ExerciseService>();
