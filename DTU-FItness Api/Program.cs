@@ -14,10 +14,24 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 
+
+
 builder.Services.AddScoped<ClubService>();
 builder.Services.AddScoped<ExerciseService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<UserService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policyBuilder =>
+        {
+            policyBuilder.WithOrigins("https://localhost:7033") // Client application URL
+                         .AllowAnyHeader()
+                         .AllowAnyMethod()
+                         .AllowCredentials(); // Allowing credentials is optional based on your security requirements
+        });
+});
 
 // Add DbContext configuration here if not already added
 // For example, if using Entity Framework Core:
@@ -37,7 +51,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true, // Ensure the token is intended for this API
             ValidateIssuerSigningKey = true,
             ValidateIssuer = true,
-            ValidateLifetime = true,
+            ValidateLifetime = false,
             
         };
     });
@@ -59,6 +73,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseCors(builder =>
+    builder.WithOrigins("https://localhost:7033")
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials());
 
 app.UseAuthentication();
 
