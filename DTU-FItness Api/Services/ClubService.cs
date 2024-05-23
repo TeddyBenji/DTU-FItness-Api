@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using DtuFitnessApi.Models;
+using DTU_FItness_Api.Models.ClubModels;
 
 namespace DtuFitnessApi.Services;
 public class ClubService
@@ -167,6 +168,35 @@ public async Task<bool> UpdateClubOwnerByUsernameAsync(string clubName, string n
     return true; // Successfully updated
 }
 
+    public async Task<List<ClubDto>> GetAllClubsAsync()
+    {
+        var clubs = await _context.Clubs
+            .Select(c => new ClubDto
+            {
+                ClubID = c.ClubID,
+                ClubName = c.ClubName,
+                Description = c.Description,
+                OwnerUserId = c.OwnerUserId,
+                CreationDate = c.CreationDate
+            })
+            .ToListAsync();
+
+        return clubs;
+    }
+
+    public async Task<List<ClubMemberDto>> GetAllClubMembersAsync(string clubId)
+    {
+        return await _context.ClubMembers
+            .Where(cm => cm.ClubId == clubId)
+            .Select(cm => new ClubMemberDto
+            {
+                ClubMemberId = cm.ClubMemberId,
+                ClubId = cm.ClubId,
+                MemberId = cm.MemberId,
+                MemberName = cm.UserProfile.Username
+            })
+            .ToListAsync();
+    }
 
 
 

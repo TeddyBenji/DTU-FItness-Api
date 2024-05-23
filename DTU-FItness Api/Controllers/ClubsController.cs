@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using DtuFitnessApi.Services;
 using DtuFitnessApi.Models;
+using DTU_FItness_Api.Models.ClubModels;
 
 
 
@@ -141,7 +142,21 @@ public async Task<IActionResult> ChangeClubOwner(string clubName, [FromBody] Clu
     return Ok("Club owner updated successfully.");
 }
 
+    [HttpGet("RetrivAllClubs")]
+    public async Task<ActionResult<List<ClubDto>>> GetAllClubs()
+    {
+        var clubs = await _clubService.GetAllClubsAsync();
+        return Ok(clubs);
+    }
 
-
-
+    [HttpGet("{clubId}/members")]
+    public async Task<ActionResult<List<ClubMemberDto>>> GetClubMembers(string clubId)
+    {
+        var members = await _clubService.GetAllClubMembersAsync(clubId);
+        if (members == null || !members.Any())
+        {
+            return NotFound("No members found for this club.");
+        }
+        return Ok(members);
+    }
 }

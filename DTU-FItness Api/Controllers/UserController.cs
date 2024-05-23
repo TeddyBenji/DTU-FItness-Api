@@ -8,7 +8,7 @@ namespace DtuFitnessApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly NotificationService _notificationService;
@@ -24,8 +24,9 @@ namespace DtuFitnessApi.Controllers
         [HttpGet("unread-notifications")]
         public async Task<IActionResult> GetUnreadNotifications()
         {
+
             // Extract the user ID from the JWT Token
-            var userId = User.FindFirstValue("sub"); 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
             {

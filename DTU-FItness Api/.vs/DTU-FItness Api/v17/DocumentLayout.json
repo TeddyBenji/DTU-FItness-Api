@@ -3,12 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\controllers\\exerciescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:controllers\\exerciescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\services\\exerciseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:services\\exerciseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\models\\traninglogmodels\\exercisedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:models\\traninglogmodels\\exercisedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\models\\traninglogmodels\\exercisemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:models\\traninglogmodels\\exercisemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\controllers\\clubscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:controllers\\clubscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\models\\clubmodels\\clubdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:models\\clubmodels\\clubdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\services\\clubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:services\\clubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\models\\clubmodels\\clubmemberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:models\\clubmodels\\clubmemberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\models\\notificationmodels\\notificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:models\\notificationmodels\\notificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|c:\\users\\benjamin\\source\\repos\\dtu-fitness api\\dtu-fitness api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C028AAB2-5AFC-4989-BABE-E0B0295EC7C4}|DTU-FItness Api.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,33 +70,188 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExerciseService.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\ExerciseService.cs",
+              "RelativeDocumentMoniker": "Services\\ExerciseService.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\ExerciseService.cs",
+              "RelativeToolTip": "Services\\ExerciseService.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAAwJIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T20:39:31.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExerciesController.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\ExerciesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExerciesController.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\ExerciesController.cs",
+              "RelativeToolTip": "Controllers\\ExerciesController.cs",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAHgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T20:33:34.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NotificationService.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\NotificationService.cs",
+              "RelativeDocumentMoniker": "Services\\NotificationService.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\NotificationService.cs",
+              "RelativeToolTip": "Services\\NotificationService.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAYwDsAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T14:41:47.154Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACcAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-08T10:54:19.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ExerciseModel.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\TraningLogModels\\ExerciseModel.cs",
+              "RelativeDocumentMoniker": "Models\\TraningLogModels\\ExerciseModel.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\TraningLogModels\\ExerciseModel.cs",
+              "RelativeToolTip": "Models\\TraningLogModels\\ExerciseModel.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABAAAABkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T20:41:56.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExerciseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\TraningLogModels\\ExerciseDto.cs",
+              "RelativeDocumentMoniker": "Models\\TraningLogModels\\ExerciseDto.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\TraningLogModels\\ExerciseDto.cs",
+              "RelativeToolTip": "Models\\TraningLogModels\\ExerciseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T20:52:04.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClubService.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\ClubService.cs",
+              "RelativeDocumentMoniker": "Services\\ClubService.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Services\\ClubService.cs",
+              "RelativeToolTip": "Services\\ClubService.cs",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAuwLMAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T11:13:04.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAAwGQAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T09:10:57.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClubsController.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\ClubsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClubsController.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\ClubsController.cs",
+              "RelativeToolTip": "Controllers\\ClubsController.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAQwJIAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T11:17:09.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ClubDto.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\ClubModels\\ClubDto.cs",
+              "RelativeDocumentMoniker": "Models\\ClubModels\\ClubDto.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\ClubModels\\ClubDto.cs",
+              "RelativeToolTip": "Models\\ClubModels\\ClubDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T11:12:39.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAApwBkAAAAIAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwCEAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:29:52.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-24T14:29:52.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAwDkAAAAAAAAA",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAAwGAAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:29:26.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-24T14:29:26.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NotificationDto.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\NotificationModels\\NotificationDto.cs",
+              "RelativeDocumentMoniker": "Models\\NotificationModels\\NotificationDto.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\NotificationModels\\NotificationDto.cs",
+              "RelativeToolTip": "Models\\NotificationModels\\NotificationDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T14:43:00.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ClubMemberDto.cs",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\ClubModels\\ClubMemberDto.cs",
+              "RelativeDocumentMoniker": "Models\\ClubModels\\ClubMemberDto.cs",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\Models\\ClubModels\\ClubMemberDto.cs",
+              "RelativeToolTip": "Models\\ClubModels\\ClubMemberDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T11:25:32.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Benjamin\\source\\repos\\DTU-FItness Api\\DTU-FItness Api\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-08T12:41:18.604Z"
             }
           ]
         }

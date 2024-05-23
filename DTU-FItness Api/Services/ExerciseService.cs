@@ -1,3 +1,4 @@
+using DTU_FItness_Api.Models;
 using DtuFitnessApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -119,9 +120,32 @@ public async Task<List<object>> GetExerciseLogsByUserIdAsync(string userId)
 
     return logs.Cast<object>().ToList();
 }
+    public async Task<List<ExerciseDto>> GetAllExercisesAsync()
+    {
+        var exercises = await _context.Exercises
+            .Select(e => new ExerciseDto
+            {
+                ExerciseID = e.ExerciseID,
+                Name = e.Name
+            })
+            .ToListAsync();
+
+        return exercises;
+    }
 
 
+    public async Task<List<Metric>> GetAllMetricsAsync()
+    {
+        var Metric = await _context.Metrics
+            .Select(e => new Metric
+            {
+                MetricID = e.MetricID,
+                Name = e.Name
+            })
+            .ToListAsync();
 
+        return Metric;
+    }
 
 
 

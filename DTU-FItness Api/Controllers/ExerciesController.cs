@@ -5,6 +5,8 @@ using DtuFitnessApi.Models;
 using DtuFitnessApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using DTU_FItness_Api.Models;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -104,8 +106,20 @@ public async Task<IActionResult> GetWorkoutLogs()
     return Ok(logs);
 }
 
+    [HttpGet("Get/exercises")]
+    public async Task<ActionResult<IEnumerable<ExerciseDto>>> GetAllExercises()
+    {
+        var exercises = await _exerciseService.GetAllExercisesAsync();
+        return Ok(exercises);
+    }
 
+    [HttpGet("Get/Metric")]
 
+    public async Task<ActionResult<IEnumerable<ExerciseDto>>> GetAllMetric()
+    {
+        var metric = await _exerciseService.GetAllMetricsAsync();
+        return Ok(metric);
+    }
 
 }
 

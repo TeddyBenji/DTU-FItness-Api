@@ -57,7 +57,7 @@ public class NotificationService
             NotificationID = un.Notification.NotificationID,
             Message = un.Notification.Message,
             EventDate = un.Notification.Event.EventDate,
-            // Add other relevant fields from the Notification entity
+            Description = un.Notification.Event.Description
         })
         .ToListAsync();
 
