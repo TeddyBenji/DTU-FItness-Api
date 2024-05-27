@@ -47,15 +47,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "https://localhost:7239"; // URL of your IdentityServer
-        options.Audience = "api1"; // The API resource identifier you configured in IdentityServer
-        options.RequireHttpsMetadata = false; // Set to true in production
+        options.Authority = "https://localhost:7239"; 
+        options.Audience = "api1"; 
+        options.RequireHttpsMetadata = true; 
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = true, // Ensure the token is intended for this API
+            ValidateAudience = true, 
             ValidateIssuerSigningKey = true,
             ValidateIssuer = true,
-            ValidateLifetime = false,
+            ValidateLifetime = true,
             
         };
     });

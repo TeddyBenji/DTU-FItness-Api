@@ -27,7 +27,7 @@ public class NotificationService
         var notification = new Notification
         {
             EventID = clubEvent.EventID,
-            Message = $"New event: {clubEvent.Title} on {clubEvent.EventDate}"
+            Message = $"New event:  {clubEvent.Title}"
         };
 
         _context.Notifications.Add(notification);
@@ -57,7 +57,8 @@ public class NotificationService
             NotificationID = un.Notification.NotificationID,
             Message = un.Notification.Message,
             EventDate = un.Notification.Event.EventDate,
-            Description = un.Notification.Event.Description
+            Description = un.Notification.Event.Description,
+            ClubName = un.Notification.Event.Club.ClubName,
         })
         .ToListAsync();
 
