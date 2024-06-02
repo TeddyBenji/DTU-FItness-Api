@@ -21,27 +21,27 @@ public class ExerciseController : ControllerBase
 
     [HttpPost("RegisterTraining")]
     [Authorize]
-    public async Task<IActionResult> RegisterTraining([FromBody] ExerciseLogDto logDto) // Change to ExerciseLogDto
+    public async Task<IActionResult> RegisterTraining([FromBody] ExerciseLogDto logDto) 
     {
-        if (logDto == null) // Adjusted to logDto
+        if (logDto == null) 
         {
             return BadRequest("Log information cannot be null.");
         }
 
         try
         {
-            // Now passing the correct DTO to the service method
-            var registeredLog = await _exerciseService.RegisterTrainingAsync(logDto); // Adjusted to logDto
+           
+            var registeredLog = await _exerciseService.RegisterTrainingAsync(logDto); 
             return Ok(registeredLog);
         }
         catch (ArgumentException ex)
         {
-            // Handle validation failures
+            
             return BadRequest(ex.Message);
         }
         catch (Exception ex)
         {
-            // Handle other unexpected exceptions
+            
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
@@ -59,11 +59,11 @@ public async Task<IActionResult> CreateExercise([FromBody] ExerciseCreateDto exe
     }
     catch (InvalidOperationException ex)
     {
-        return BadRequest(ex.Message); // Handle specific known errors gracefully
+        return BadRequest(ex.Message); 
     }
     catch (Exception ex)
     {
-        return StatusCode(500, $"Internal server error: {ex.Message}"); // General error handling
+        return StatusCode(500, $"Internal server error: {ex.Message}"); 
     }
 }
 
@@ -80,11 +80,11 @@ public async Task<IActionResult> CreateMetric([FromBody] MetricCreateDto metricD
     }
     catch (InvalidOperationException ex)
     {
-        return BadRequest(ex.Message); // Handle specific known errors gracefully
+        return BadRequest(ex.Message); 
     }
     catch (Exception ex)
     {
-        return StatusCode(500, $"Internal server error: {ex.Message}"); // General error handling
+        return StatusCode(500, $"Internal server error: {ex.Message}"); 
     }
 }
 

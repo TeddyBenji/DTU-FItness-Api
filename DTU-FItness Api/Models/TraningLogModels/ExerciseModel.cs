@@ -12,7 +12,5 @@ public class ExerciseModel
     [Required]
     [MaxLength(255)]
     public string Name { get; set; }
-
-    // Initialize the collection to prevent null reference issues
     public virtual ICollection<ExerciseLog> ExerciseLogs { get; set; } = new HashSet<ExerciseLog>();
 }

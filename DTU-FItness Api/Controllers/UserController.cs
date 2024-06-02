@@ -20,12 +20,12 @@ namespace DtuFitnessApi.Controllers
             _userService = userService;
         }
 
-        // Example method to fetch unread notifications for the authenticated user
+        
         [HttpGet("unread-notifications")]
         public async Task<IActionResult> GetUnreadNotifications()
         {
 
-            // Extract the user ID from the JWT Token
+            
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))

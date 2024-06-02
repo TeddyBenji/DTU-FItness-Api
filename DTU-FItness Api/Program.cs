@@ -8,8 +8,8 @@ using DtuFitnessApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.ClearProviders(); // Clear existing providers
-builder.Logging.AddConsole(); // Add console logging
+builder.Logging.ClearProviders(); 
+builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 
@@ -30,15 +30,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         policyBuilder =>
         {
-            policyBuilder.WithOrigins("https://localhost:7033") // Client application URL
+            policyBuilder.WithOrigins("https://localhost:7033") 
                          .AllowAnyHeader()
                          .AllowAnyMethod()
-                         .AllowCredentials(); // Allowing credentials is optional based on your security requirements
+                         .AllowCredentials(); 
         });
 });
 
-// Add DbContext configuration here if not already added
-// For example, if using Entity Framework Core:
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
@@ -71,7 +70,7 @@ builder.Services.AddAuthorization(options =>
 var app = builder.Build();
 
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -87,10 +86,10 @@ app.UseCors(builder =>
 
 app.UseAuthentication();
 
-// Use authorization middleware
+
 app.UseAuthorization();
 
-//app.UseHttpsRedirection();
+
 
 app.UseEndpoints(endpoints =>
 {

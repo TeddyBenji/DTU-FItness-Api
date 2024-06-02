@@ -45,7 +45,8 @@ public class UserService
             ProfileID = u.ProfileID,
             IdentityUserID = u.IdentityUserID,
             Username = u.Username,
-            Bio = u.Bio
+            Bio = u.Bio,
+            Email = u.Email
         })
         .ToListAsync();
 }

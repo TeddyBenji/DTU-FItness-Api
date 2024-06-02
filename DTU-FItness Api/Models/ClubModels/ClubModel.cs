@@ -24,7 +24,7 @@ public class ClubModel
     [Required]
     public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 
-    // Initialize the collection to prevent null reference issues
+    
     public virtual ICollection<ClubMember> ClubMembers { get; set; } = new HashSet<ClubMember>();
 
     public virtual ICollection<Event> Events { get; set; } = new HashSet<Event>();

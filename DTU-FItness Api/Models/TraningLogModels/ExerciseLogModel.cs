@@ -19,7 +19,6 @@ public class ExerciseLog
     [Required]
     public DateTime ExerciseDate { get; set; } = DateTime.UtcNow;
 
-    // Navigation properties
     [ForeignKey("UserID")]
     public virtual UserProfile UserProfile { get; set; }
 

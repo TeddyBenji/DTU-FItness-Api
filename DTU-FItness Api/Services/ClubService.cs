@@ -21,10 +21,10 @@ public class ClubService
     {
         var identityUserId = await _context.UserProfiles
             .Where(u => u.Username == username)
-            .Select(u => u.IdentityUserID) // Now a string, no need to call ToString()
+            .Select(u => u.IdentityUserID) 
             .FirstOrDefaultAsync();
 
-        return identityUserId; // This will be null if the user is not found
+        return identityUserId; 
     }
 
     public async Task<ClubModel> CreateClubAsync(ClubModel newClub)
@@ -36,55 +36,52 @@ public class ClubService
     if (string.IsNullOrWhiteSpace(newClub.OwnerUsername))
         throw new ArgumentException("Owner username is required.", nameof(newClub.OwnerUsername));
 
-    // Use OwnerUsername to find the user's IdentityUserID
+    
     var ownerUserId = await FindUserIdByUsernameAsync(newClub.OwnerUsername);
     if (string.IsNullOrWhiteSpace(ownerUserId))
     {
         throw new ArgumentException("User not found.", nameof(newClub.OwnerUsername));
     }
 
-    // Assign the IdentityUserID to the OwnerUserId property
-    newClub.OwnerUserId = ownerUserId; // Now it is a string from the UserProfiles table
-    newClub.ClubID = Guid.NewGuid().ToString(); // Generate a new GUID as a string for ClubID
-    newClub.CreationDate = DateTime.UtcNow; // Set the current UTC time as the creation date
+    
+    newClub.OwnerUserId = ownerUserId; 
+    newClub.ClubID = Guid.NewGuid().ToString(); 
+    newClub.CreationDate = DateTime.UtcNow; 
 
-    // Note: OwnerUsername is marked with [NotMapped] so it won't be stored in the database
-    // We only use it to look up the OwnerUserId
-
-    // Add the newClub instance to the context
+   
     _context.Clubs.Add(newClub);
-    // Save changes to the database
+    
     await _context.SaveChangesAsync();
 
-    return newClub; // Return the newly created club model
+    return newClub; 
 }
 
 
     public async Task<(bool Success, string Message)> RegisterMemberAsync(string username, string clubName)
 {
-    // Get the UserProfile using the username
+    
     var userProfile = await _context.UserProfiles
         .FirstOrDefaultAsync(u => u.Username == username);
     if (userProfile == null)
         return (false, "User not found.");
 
-    // Get the Club using the clubName
+   
     var club = await _context.Clubs
         .FirstOrDefaultAsync(c => c.ClubName == clubName);
     if (club == null)
         return (false, "Club not found.");
 
-    // Check if the user is already a member of the club
+    
     var isMember = await _context.ClubMembers
     .AnyAsync(cm => cm.MemberId == userProfile.IdentityUserID && cm.ClubId == club.ClubID);
 if (isMember)
     return (false, "User is already a member of the club.");
 
-    // Register the user as a member of the club
+    
     var clubMember = new ClubMember
     {
-        ClubId = club.ClubID, // Assign the ClubID as a string
-        MemberId = userProfile.IdentityUserID.ToString() // Assign the IdentityUserID as a string
+        ClubId = club.ClubID,
+        MemberId = userProfile.IdentityUserID.ToString()
     };
 
     _context.ClubMembers.Add(clubMember);
@@ -103,7 +100,7 @@ if (isMember)
 
     var newEvent = new Event
     {
-        ClubID = club.ClubID, // ClubID found based on ClubName
+        ClubID = club.ClubID, 
         Title = eventDto.Title,
         Description = eventDto.Description,
         EventDate = eventDto.EventDate
@@ -127,9 +124,9 @@ if (isMember)
     {
         _context.Clubs.Remove(club);
         await _context.SaveChangesAsync();
-        return true;  // Return true if the club was found and deleted
+        return true; 
     }
-    return false;  // Return false if no club was found to delete
+    return false;
 }
 
 
@@ -138,34 +135,34 @@ public async Task<bool> UpdateClubDescriptionAsync(string clubName, string newDe
     var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == clubName);
     if (club == null)
     {
-        return false;  // Club not found
+        return false; 
     }
 
     club.Description = newDescription;
     await _context.SaveChangesAsync();
-    return true;  // Successfully updated
+    return true; 
 }
 
 public async Task<bool> UpdateClubOwnerByUsernameAsync(string clubName, string newOwnerUsername)
 {
-    // First find the user by username to get the IdentityUserID
+    
     var newUser = await _context.UserProfiles
                                 .FirstOrDefaultAsync(u => u.Username == newOwnerUsername);
     if (newUser == null)
     {
-        return false; // New owner user not found
+        return false; 
     }
 
-    // Then find the club and update its owner
+    
     var club = await _context.Clubs.FirstOrDefaultAsync(c => c.ClubName == clubName);
     if (club == null)
     {
-        return false; // Club not found
+        return false; 
     }
 
     club.OwnerUserId = newUser.IdentityUserID;
     await _context.SaveChangesAsync();
-    return true; // Successfully updated
+    return true; 
 }
 
     public async Task<List<ClubDto>> GetAllClubsAsync()
@@ -197,6 +194,17 @@ public async Task<bool> UpdateClubOwnerByUsernameAsync(string clubName, string n
             })
             .ToListAsync();
     }
+
+    public async Task<ClubModel> GetClubDetailsByNameAsync(string clubName)
+    {
+        return await _context.Clubs
+            .Include(c => c.ClubMembers)
+            .ThenInclude(cm => cm.UserProfile)
+            .Include(c => c.Events)
+            .FirstOrDefaultAsync(c => c.ClubName == clubName);
+    }
+
+
 
 
 

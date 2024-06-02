@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 public class UserProfile
 {
-    // Include the ProfileID which is the primary key with auto-increment
+    
     [Key]
     public int ProfileID { get; set; }
 
-    // Use string type for GUIDs stored as VARCHAR
+    
     [StringLength(255)]
     public string IdentityUserID { get; set; }
 
@@ -16,9 +16,9 @@ public class UserProfile
     [MaxLength(255)]
     public string Username { get; set; }
 
-    public string? Bio  { get; set; }
+    public string Email { get; set; }
 
-    // Include other properties like Bio and FitnessGoals if needed
+    public string? Bio  { get; set; }
 
     public virtual ICollection<ClubMember> ClubMembers { get; set; }
 

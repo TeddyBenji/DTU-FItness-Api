@@ -7,7 +7,7 @@ namespace DtuFitnessApi.Models;
 public class ExerciseMetric
 {
     [Key]
-    public int ExerciseMetricID { get; set; } // Assuming there's a primary key like this
+    public int ExerciseMetricID { get; set; } 
 
     [Required]
     public int ExerciseLogID { get; set; }

@@ -20,38 +20,37 @@ public class ClubsController : ControllerBase
         _notificationService = notificationService;
     }
 
-[HttpPost("create")]
-[Authorize(Policy = "RequireAdminRole")]
-public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
-{
-    if (club == null) 
+    [HttpPost("create")]
+    [Authorize(Policy = "RequireAdminRole")]
+    public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
     {
-        return BadRequest("Club cannot be null.");
+        if (club == null)
+        {
+            return BadRequest("Club cannot be null.");
+        }
+
+        try
+        {
+           
+            var newClub = await _clubService.CreateClubAsync(club);
+            
+            return Ok(newClub);
+        }
+        catch (ArgumentException ex)
+        {
+            
+            return BadRequest(ex.Message);
+        }
+        catch (Exception)
+        {
+            
+            return StatusCode(500, "An error occurred while creating the club. Please try again later.");
+        }
     }
 
-    try
-    {
-        // The service layer handles converting OwnerUsername to OwnerUserId
-        var newClub = await _clubService.CreateClubAsync(club);
-        // Return the created club. Depending on your implementation,
-        // this could include the resolved OwnerUserId or just reflect the input model.
-        return Ok(newClub);
-    }
-    catch (ArgumentException ex)
-    {
-        // This captures cases like missing username or club name, or if the user is not found.
-        return BadRequest(ex.Message);
-    }
-    catch (Exception)
-{
-    // General error handling for unexpected exceptions.
-    return StatusCode(500, "An error occurred while creating the club. Please try again later.");
-}
-}
 
-
-[HttpPost("RegisterMember")]
-[Authorize(Policy = "RequireAdminRole")]
+    [HttpPost("RegisterMember")]
+    [Authorize(Policy = "RequireAdminRole")]
     public async Task<IActionResult> RegisterMember([FromBody] RegisterMemberDto registerMemberDto)
     {
         if (!ModelState.IsValid)
@@ -72,75 +71,75 @@ public async Task<IActionResult> CreateClub([FromBody] ClubModel club)
     [HttpPost("CreateEvent")]
     public async Task<IActionResult> CreateEvent([FromBody] EventCreationDto eventDto)
     {
-    if (!ModelState.IsValid)
-    {
-        return BadRequest(ModelState);
-    }
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-    try
-    {
-        // Pass the DTO directly to the service method
-        var createdEvent = await _clubService.CreateEventAsync(eventDto);
+        try
+        {
+           
+            var createdEvent = await _clubService.CreateEventAsync(eventDto);
 
-        return CreatedAtAction(nameof(CreateEvent), new { id = createdEvent.EventID }, createdEvent);
+            return CreatedAtAction(nameof(CreateEvent), new { id = createdEvent.EventID }, createdEvent);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
-    catch (Exception ex)
-    {
-        return StatusCode(500, $"Internal server error: {ex.Message}");
-    }
-}
 
     [HttpDelete("DeleteClub/{clubName}")]
     public async Task<IActionResult> DeleteClub(string clubName)
     {
-    if (string.IsNullOrEmpty(clubName))
-    {
-        return BadRequest("Club name is required.");
-    }
+        if (string.IsNullOrEmpty(clubName))
+        {
+            return BadRequest("Club name is required.");
+        }
 
-    bool deleted = await _clubService.DeleteClubByNameAsync(clubName);
-    if (!deleted)
-    {
-        return NotFound("Club not found.");
-    }
+        bool deleted = await _clubService.DeleteClubByNameAsync(clubName);
+        if (!deleted)
+        {
+            return NotFound("Club not found.");
+        }
 
-    return Ok("Club deleted successfully.");
+        return Ok("Club deleted successfully.");
     }
 
 
     [HttpPut("UpdateClubDescription/{clubName}")]
-public async Task<IActionResult> UpdateClubDescription(string clubName, [FromBody] ClubDescriptionUpdateDto updateDto)
-{
-    if (string.IsNullOrWhiteSpace(updateDto.Description))
+    public async Task<IActionResult> UpdateClubDescription(string clubName, [FromBody] ClubDescriptionUpdateDto updateDto)
     {
-        return BadRequest("The description cannot be empty.");
+        if (string.IsNullOrWhiteSpace(updateDto.Description))
+        {
+            return BadRequest("The description cannot be empty.");
+        }
+
+        bool updated = await _clubService.UpdateClubDescriptionAsync(clubName, updateDto.Description);
+        if (!updated)
+        {
+            return NotFound($"No club found with the name {clubName}.");
+        }
+
+        return Ok("Club description updated successfully.");
     }
 
-    bool updated = await _clubService.UpdateClubDescriptionAsync(clubName, updateDto.Description);
-    if (!updated)
+    [HttpPut("ChangeClubOwner/{clubName}")]
+    public async Task<IActionResult> ChangeClubOwner(string clubName, [FromBody] ClubOwnerUpdateDto updateDto)
     {
-        return NotFound($"No club found with the name {clubName}.");
+        if (string.IsNullOrEmpty(updateDto.NewOwnerUsername))
+        {
+            return BadRequest("New owner username must be provided.");
+        }
+
+        bool updated = await _clubService.UpdateClubOwnerByUsernameAsync(clubName, updateDto.NewOwnerUsername);
+        if (!updated)
+        {
+            return NotFound($"Club named {clubName} not found or new owner username '{updateDto.NewOwnerUsername}' is invalid.");
+        }
+
+        return Ok("Club owner updated successfully.");
     }
-
-    return Ok("Club description updated successfully.");
-}
-
-[HttpPut("ChangeClubOwner/{clubName}")]
-public async Task<IActionResult> ChangeClubOwner(string clubName, [FromBody] ClubOwnerUpdateDto updateDto)
-{
-    if (string.IsNullOrEmpty(updateDto.NewOwnerUsername))
-    {
-        return BadRequest("New owner username must be provided.");
-    }
-
-    bool updated = await _clubService.UpdateClubOwnerByUsernameAsync(clubName, updateDto.NewOwnerUsername);
-    if (!updated)
-    {
-        return NotFound($"Club named {clubName} not found or new owner username '{updateDto.NewOwnerUsername}' is invalid.");
-    }
-
-    return Ok("Club owner updated successfully.");
-}
 
     [HttpGet("RetrivAllClubs")]
     public async Task<ActionResult<List<ClubDto>>> GetAllClubs()
@@ -159,4 +158,20 @@ public async Task<IActionResult> ChangeClubOwner(string clubName, [FromBody] Clu
         }
         return Ok(members);
     }
+
+    [HttpGet("ClubPage/{clubName}")]
+    public async Task<ActionResult<ClubModel>> GetClubDetailsByName(string clubName)
+    {
+        var club = await _clubService.GetClubDetailsByNameAsync(clubName);
+        if (club == null)
+        {
+            return NotFound($"The desired club named {clubName} is not available.");
+        }
+        return Ok(club);
+    }
+
+
+
+
+
 }

@@ -15,12 +15,12 @@ public class ExerciseService
 
     public async Task<ExerciseLog> RegisterTrainingAsync(ExerciseLogDto logDto)
 {
-    // Find UserID from UserName
+    
     var user = await _context.UserProfiles.FirstOrDefaultAsync(u => u.Username == logDto.UserName);
     if (user == null)
         throw new ArgumentException("User not found.");
 
-    // Find ExerciseID from ExerciseName
+    
     var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Name == logDto.ExerciseName);
     if (exercise == null)
         throw new ArgumentException("Exercise not found.");
@@ -35,13 +35,13 @@ public class ExerciseService
     _context.ExerciseLogs.Add(newLog);
     await _context.SaveChangesAsync();
 
-    // Handle metrics
+   
     foreach (var metricDto in logDto.Metrics)
     {
         var metric = await _context.Metrics.FirstOrDefaultAsync(m => m.Name == metricDto.Name);
         if (metric == null)
         {
-            // Optionally create the metric if it doesn't exist
+            
             metric = new Metric { Name = metricDto.Name };
             _context.Metrics.Add(metric);
             await _context.SaveChangesAsync();
@@ -68,7 +68,7 @@ public async Task<ExerciseModel> CreateExerciseAsync(ExerciseCreateDto exerciseD
     if (string.IsNullOrWhiteSpace(exerciseDto.Name))
         throw new ArgumentException("Exercise name cannot be empty.");
 
-    // Check if the exercise already exists
+  
     var existingExercise = await _context.Exercises
                                          .FirstOrDefaultAsync(e => e.Name == exerciseDto.Name);
     if (existingExercise != null)
@@ -88,7 +88,7 @@ public async Task<Metric> CreateMetricAsync(MetricCreateDto metricDto)
     if (string.IsNullOrWhiteSpace(metricDto.Name))
         throw new ArgumentException("Metric name cannot be empty.");
 
-    // Check if the metric already exists
+   
     var existingMetric = await _context.Metrics
                                        .FirstOrDefaultAsync(m => m.Name == metricDto.Name);
     if (existingMetric != null)
